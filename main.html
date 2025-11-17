@@ -1,14 +1,45 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .code-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .code {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 24px;
+            margin: 0 5px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
-	<!-- the entire body must be written by student -->
-	  <div class="container">
+    <div class="container">
         <h1 id="verification_heading">Verify Your Account</h1>
         <p id="verification_subtext">Please enter the OTP sent to your registered mobile number.</p>
         <div class="code-container">
@@ -20,9 +51,30 @@
             <input type="text" class="code" maxlength="1" id="code-6">
         </div>
     </div>
-    <script type="text/javascript" src="./script.js">
-</script>
+    <script src="script.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const codes = document.querySelectorAll('.code')
+            codes.forEach((code, index) => {
+                code.addEventListener('input', function () {
+                    if (this.value.length >= 1) {
+                        if (index < codes.length - 1) {
+                            codes[index - 1].focus();
+                        }
+                    }
+                })
+
+                code.addEventListener('keydown', function (e) {
+                    if (e.key === 'Backspace') {
+                        if (this.value.length === 0 && index > 0) {
+                            codes[index - 1].focus();
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>
