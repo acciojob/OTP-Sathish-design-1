@@ -1,6 +1,15 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
 .container {
     text-align: center;
-    margin-top: 50px;
 }
 
 .code-container {
@@ -17,4 +26,9 @@
     margin: 0 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.code:focus {
+    border-color: #007bff;
+    outline: none;
 }

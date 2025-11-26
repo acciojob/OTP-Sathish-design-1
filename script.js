@@ -1,17 +1,26 @@
-document.querySelectorAll('.code').forEach((input, index) => {
-    input.addEventListener('input', function() {
-        // Move to the next input field
-        if (this.value.length === 1 && index < 5) {
-            document.querySelectorAll('.code')[index + 1].focus();
+const inputs = document.querySelectorAll('.code');
+
+inputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+        if (input.value) {
+            // Move focus to the next input
+            if (index < inputs.length - 1) {
+                inputs[index + 1].focus();
+            }
         }
     });
 
-    input.addEventListener('keydown', function(event) {
-        // Handle backspace
-        if (event.key === 'Backspace' && this.value === '') {
-            if (index > 0) {
-                document.querySelectorAll('.code')[index - 1].focus();
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'Backspace') {
+            if (input.value === '') {
+                // Move focus to the previous input
+                if (index > 0) {
+                    inputs[index - 1].focus();
+                }
             }
         }
     });
 });
+
+// Automatically focus the first input on page load
+inputs[0].focus();
